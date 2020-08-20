@@ -1,3 +1,5 @@
-tests.csv
-.orig
+tests.py
+*.orig
 my-env/
+.vscode/
+__pycache__/
