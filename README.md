@@ -6,4 +6,4 @@ Usage Syntax:
 
     <!-- CASE 2 -->
     <!-- When using single input files -->
-    python3 LaderIndexMap.py -pull_from_file=false -input=input.tif -output=output.tif -code=13
+    python3 LaderIndexMap.py -input=input.tif -output=output.tif -code=13
