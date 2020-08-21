@@ -91,9 +91,6 @@ def main():
             csv_file = open(args.input_file, "r")
             csv_file_reader = csv.DictReader(csv_file)
             for row in csv_file_reader:
-                print(
-                    input_file=f"{row['input_file']}\n output_file = {row['output_file']}\ncode = {row['code']}"
-                )
                 process_lader_index_map(
                     row["input_file"], row["output_file"], row["code"]
                 )

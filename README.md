@@ -1,4 +1,4 @@
-Usage Syntax: 
+Usage: 
 
     <!-- CASE 1 -->
     <!-- When pulling data from csv file ... -->
