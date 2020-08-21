@@ -5,7 +5,7 @@ import argparse
 
 
 logging.basicConfig(
-    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.INFO
+    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s", level=logging.INFO, filename='./lader.log'
 )
 
 parser = argparse.ArgumentParser(description="LaderIndexMap Process")
@@ -92,7 +92,7 @@ def main():
             csv_file_reader = csv.DictReader(csv_file)
             for row in csv_file_reader:
                 print(
-                    f"input_file = {row['input_file']}\n output_file = {row['output_file']}\ncode = {row['code']}"
+                    input_file=f"{row['input_file']}\n output_file = {row['output_file']}\ncode = {row['code']}"
                 )
                 process_lader_index_map(
                     row["input_file"], row["output_file"], row["code"]
