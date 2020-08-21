@@ -49,9 +49,7 @@ def process_lader_index_map(input_file, output_file, code):
     logging.info(f"Running: {cmd3}")
     os.system(cmd3)
 
-    # The command below probably needs testing manually... -TOPERATOR=0 probably.
-
-    cmd4 = 'saga_cmd io_gdal "Export GeoTIFF" -GRIDS=H_temp.sdat -FILE=J_Temp.tifs'
+    cmd4 = 'saga_cmd io_gdal "Export GeoTIFF" -GRIDS=H_temp.sdat -FILE=J_Temp.tif'
     logging.info(f"Running: {cmd4}")
     os.system(cmd4)
 
@@ -64,7 +62,7 @@ def process_lader_index_map(input_file, output_file, code):
     logging.info(f"Running: {cmd}")
     os.system(cmd)
 
-    if not os.path.exists("output_file"):
+    if not os.path.exists(output_file):
         logging.info(f"{output_file} file does not exist!")
 
     cmd5 = f'gdal_translate -tr 200 200 -co COMPRESS=LZW -a_nodata 0 -co JPEG_QUALITY=90 J_Temp.tif {output_file}'
