@@ -42,7 +42,7 @@ def process_lader_index_map(input_file, output_file, code):
 
     if not os.path.exists("F_temp.tif"):
         logging.info(f"F_temp.tif does not exist!")
-    os.system("rm F_temp.tif")
+    # os.system("rm F_temp.tif")
 
     cmd = 'saga_cmd grid_tools "Reclassify Grid Values" -INPUT=G_temp.tif -RESULT=H_temp.sdat -RETAB=matrix.txt -METHOD=0 -OLD=0.0 -NEW=0.0 -SOPERATOR=0 -MIN=0.0 -MAX=1.0 -RNEW=2.0 -ROPERATOR=0 -RETAB -OTHEROPT=0.0 -OTHERS=0.0'
     logging.info(f"Running: {cmd}")
@@ -61,7 +61,7 @@ def process_lader_index_map(input_file, output_file, code):
 
     cmd = 'rm H_temp.* G_temp.tif'
     logging.info(f"Running: {cmd}")
-    os.system(cmd)
+    # os.system(cmd)
 
     if not os.path.exists("output_file"):
         logging.info(f"{output_file} file does not exist!")
@@ -73,7 +73,7 @@ def process_lader_index_map(input_file, output_file, code):
     if not os.path.exists("J_Temp.tif"):
         logging.info(f"J_Temp.tif file does not exist!")
     cmd = "rm J_Temp.tif"
-    os.system(cmd)
+    # os.system(cmd)
 
 
 def main():
