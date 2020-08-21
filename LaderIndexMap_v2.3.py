@@ -97,7 +97,8 @@ def main():
                         row["input_file"], row["output_file"], row["code"]
                     )
                     continue
-                print(f'{row["input_file"]} does not exist!')
+                print(
+                    f'\n\nInput file {row["input_file"]} does not exist!\n\n')
             logging.info(f"Processed all the entries in {args.input_file}")
     else:
         if not args.input:
