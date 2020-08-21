@@ -31,7 +31,8 @@ parser.add_argument(
 
 def process_lader_index_map(input_file, output_file, code):
     calc = f'"{code}*(A>0)"'
-
+    if not os.path.exists(input_file):
+        logging.info('Input file does not exist!')
     cmd1 = f'gdal_calc.py gdal_calc.py -A gdal_calc.py --outfile=F_temp.tif -A {input_file} --calc={calc}'
     logging.info(f"Running: {cmd1}")
     os.system(cmd1)
@@ -42,7 +43,7 @@ def process_lader_index_map(input_file, output_file, code):
 
     if not os.path.exists("F_temp.tif"):
         logging.info(f"F_temp.tif does not exist!")
-    # os.system("rm F_temp.tif")
+    os.system("rm F_temp.tif")
 
     cmd3 = 'saga_cmd grid_tools "Reclassify Grid Values" -INPUT=G_temp.tif -RESULT=H_temp.sdat -RETAB=matrix.txt -METHOD=0 -OLD=0.0 -NEW=0.0 -SOPERATOR=0 -MIN=0.0 -MAX=1.0 -RNEW=2.0 -ROPERATOR=0 -RETAB -OTHEROPT=0.0 -OTHERS=0.0'
     logging.info(f"Running: {cmd3}")
@@ -61,7 +62,7 @@ def process_lader_index_map(input_file, output_file, code):
 
     cmd = 'rm H_temp.* G_temp.tif'
     logging.info(f"Running: {cmd}")
-    # os.system(cmd)
+    os.system(cmd)
 
     if not os.path.exists("output_file"):
         logging.info(f"{output_file} file does not exist!")
@@ -73,7 +74,7 @@ def process_lader_index_map(input_file, output_file, code):
     if not os.path.exists("J_Temp.tif"):
         logging.info(f"J_Temp.tif file does not exist!")
     cmd = "rm J_Temp.tif"
-    # os.system(cmd)
+    os.system(cmd)
 
 
 def main():
@@ -91,9 +92,12 @@ def main():
             csv_file = open(args.input_file, "r")
             csv_file_reader = csv.DictReader(csv_file)
             for row in csv_file_reader:
-                process_lader_index_map(
-                    row["input_file"], row["output_file"], row["code"]
-                )
+                if os.path.exists(row['input_file']):
+                    process_lader_index_map(
+                        row["input_file"], row["output_file"], row["code"]
+                    )
+                    continue
+                print(f'{row["input_file"]} does not exist!')
             logging.info(f"Processed all the entries in {args.input_file}")
     else:
         if not args.input:
